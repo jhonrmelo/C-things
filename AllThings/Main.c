@@ -1,7 +1,8 @@
 ﻿#include <stdio.h>
 #include <stdlib.h>
 
-//Criação da struct pessoa
+#define CleanScreen system("cls");
+//Criação da struct pessoa usado no exemplo de struct
 typedef struct _pessoa
 {
     char Nome[50];
@@ -12,13 +13,14 @@ typedef struct _pessoa
     double Salario;
 
 } pessoa;
+//Criação de uma lista ligada usada no exemplo de linkedList
 typedef struct _linkedlist
 {
     int value;
     struct _linkedlist *pLigacao;
 } linkedList;
 
-//Criação da struct valores
+//Criação da struct valores usado no exemplo e ponteiros
 typedef struct _valores
 {
     double Media;
@@ -27,11 +29,25 @@ typedef struct _valores
     double Soma;
 } valores;
 
+typedef struct ElementoLista
+{
+    int *numero;
+    struct ElementoLista *Next;
+
+} Elemento;
+
+typedef struct ListaEncontrada
+{
+    Elemento *PrimeiroElemento;
+    int tamanho;
+} Pilha;
+
 void ReadAndPrintStruct();
 void PointerWithStructAndDynamicAllocation();
 void CalculaValores();
 void LinkedList();
 void DisplayLinkedList();
+void UseOfStaticStack();
 void menu();
 
 int main()
@@ -46,19 +62,31 @@ void menu()
     printf("\n0 - Cria%c%co e uso de struct", 135, 198);
     printf("\n1 - Uso de Ponteiros");
     printf("\n2- Uso de Lista Encadeada");
+    printf("\n3- Uso de Pilhas");
+    printf("\n30 - Sair do programa");
 
     printf("\nEscolha: ");
     scanf("%d", &Option);
     switch (Option)
     {
     case 0:
+        CleanScreen;
         ReadAndPrintStruct();
         break;
     case 1:
+        CleanScreen;
         PointerWithStructAndDynamicAllocation();
         break;
     case 2:
+        CleanScreen;
         LinkedList();
+        break;
+    case 3:
+        CleanScreen;
+        UseOfStaticStack();
+        break;
+    case 30:
+        exit(0);
         break;
     default:
         break;
@@ -211,4 +239,9 @@ void CalculaValores(valores *pValores, double *array, int qtd)
     }
 
     pValores->Media = pValores->Soma / qtd;
+}
+
+void UseOfStaticStack()
+{
+        
 }

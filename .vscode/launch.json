@@ -4,11 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+    {
+        "type": "java",
+        "name": "Debug (Launch)",
+        "request": "launch",
+        "mainClass": ""
+    },
         {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}\\Allthings\\a.exe",
+            "program": "${workspaceRoot}\\Allthings\\main.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
