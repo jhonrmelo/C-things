@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <conio.h>
 
 typedef struct _pedido
 {
@@ -20,6 +21,7 @@ typedef No *pNo;
 typedef struct _Queue
 {
     pNo ini, fim;
+    int tamanho;
 } Queue;
 
 typedef Queue *pQueue;
@@ -39,6 +41,8 @@ void enqueue(pQueue f, pedido pPedido)
     else
         f->fim->prox = novo;
     f->fim = novo;
+    f->tamanho = f->tamanho + 1;
+    printf("%d", f->tamanho);
     return;
 }
 
@@ -64,6 +68,7 @@ pedido dequeue(pQueue f)
         if (f->ini == NULL)
             f->fim = NULL;
         free(primeiro);
+        f->tamanho--;
     }
     return toRemove;
 }
@@ -77,6 +82,7 @@ void montaMenu()
 {
     char Escolha;
     pQueue pFila = criarQueue();
+    pFila->tamanho = 0;
     int SenhaInicial;
 
     printf("Digite a senha inicial ");
@@ -88,14 +94,15 @@ void montaMenu()
         printf("Adicionar Pedido? (Digite a letra A) \n");
         printf("Chamar Proxima Senha? (Digite a letra P) \n");
         printf("Fechar o sistema? (Digite a letra X)");
-        scanf("%c", &Escolha);
+        scanf(" %c", &Escolha);
 
         switch (toupper(Escolha))
         {
         case 'A':
             AdicionaPedido(pFila, SenhaInicial);
+            system("cls");
             printf("Prato adicionado na fila de espera, voltando para o menu \n");
-            SenhaInicial++;
+            SenhaInicial = SenhaInicial + 1;
             break;
         case 'P':
             TiraPedido(pFila);
@@ -113,7 +120,6 @@ void AdicionaPedido(pQueue fila, int senha)
 {
 
     pedido Pedido;
-
     printf("Digite o nome da pessoa \n");
     fflush(stdin);
     fgets(Pedido.nome, sizeof(Pedido.nome), stdin);
@@ -129,10 +135,17 @@ void AdicionaPedido(pQueue fila, int senha)
 
 void TiraPedido(pQueue fila)
 {
-
-    pedido Pedido = dequeue(fila);
-
-    printf("Senha chamada: %d \n", Pedido.senha);
-    printf("Nome: %s", Pedido.nome);
-    printf("Prato: %s \n", Pedido.prato);
+    system("cls");
+    
+    if (fila->tamanho > 0)
+    {
+        pedido Pedido = dequeue(fila);
+        printf("Senha chamada: %d \n", Pedido.senha);
+        printf("Nome: %s", Pedido.nome);
+        printf("Prato: %s \n", Pedido.prato);
+    }
+    else
+    {
+        printf("Nao ha ninguem na fila! \n");
+    }
 }
