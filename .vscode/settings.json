@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "string.h": "c",
+        "initializer_list": "c"
     }
 }
