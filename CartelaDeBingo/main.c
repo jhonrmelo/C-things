@@ -50,7 +50,7 @@ int getUnusedNumber(int *numbersUsed)
     int randomNumber = rand() % 100;
 
     if (containsNumber(numbersUsed, randomNumber) == 1)
-        getUnusedNumber(numbersUsed);
+        randomNumber = getUnusedNumber(numbersUsed);
 
-    return randomNumber;    
+    return randomNumber;
 }
