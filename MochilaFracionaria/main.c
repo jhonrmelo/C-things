@@ -42,7 +42,7 @@ int main(void)
     double value = 0;
     value = MochilaFracionaria(itens, qtd, n);
 
-    printf(" Valor maximo de itens: %.2f", value);
+    printf("Valor máximo de itens: %.2f", value);
 }
 
 double MochilaFracionaria(pItem itens, int capacidade, int countItens)
